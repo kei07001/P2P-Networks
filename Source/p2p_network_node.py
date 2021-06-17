@@ -133,7 +133,6 @@ class p2p_network_node:
 		self.network_nodes_area.configure(state='disabled')
 
 	def refresh_pending_transaction(self):
-		print(self.BC.pending_transactions)
 		self.pending_transactions_area.configure(state='normal')
 		self.pending_transactions_area.delete("1.0", "end")
 		json_pending_transactions = json.dumps(self.BC.pending_transactions, indent=1)
@@ -172,10 +171,9 @@ class p2p_network_node:
 		nonce = self.proof_of_work(previous_block_hash, current_block_data)
 		hash_data = self.BC.hash_block(previous_block_hash, current_block_data, nonce)
 		new_block = self.BC.create_new_block(nonce, previous_block_hash, hash_data)
-		new_transaction = self.BC.create_new_transaction(0.1, 'Mining Reward', self.user_id)
-		adding_block_num = self.BC.add_transaction_to_pending_transactions(new_transaction)
 		self.refresh_chain()
 		self.broadcast_chain()
+		self.refresh_chain()
 	
 	def broadcast_chain(self):
 		data = json.dumps(self.BC.chain).encode('utf-8')
@@ -271,11 +269,9 @@ class p2p_network_node:
 				self.final_received_message = incoming_message.decode('utf-8')
 				dict_data = json.loads(self.final_received_message)
 				if 'amount' in dict_data[0].keys() :
-					print('amount')
 					self.BC.pending_transactions = dict_data
 					
 				elif 'index' in dict_data[0].keys():
-					print('index')
 					self.BC.chain = dict_data
 					self.BC.pending_transactions.clear()
 					
@@ -302,5 +298,4 @@ if __name__ == "__main__":
 
 	mainloop()
 	
-
 
