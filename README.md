@@ -55,8 +55,8 @@
 <img src="img/mine_from_node2_node3.png" width="700"><br>
 <br><br>
 #### 4. 참고 자료
-- 자바스크립트와 함꼐하는 블록체인 코딩(Eric Traub, 홍릉과학출판사)
-- TCP/IP 프로그래밍 교안
+- 자바스크립트와 함께하는 블록체인 코딩(Eric Traub, 홍릉과학출판사)
+
 <br>
 
 #### 5. 구현 및 실행 환경
